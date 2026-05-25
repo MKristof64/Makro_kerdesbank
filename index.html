@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Randomizált Makro_kerdesbank gyakorlóteszt azonnali visszajelzéssel és részletes indoklásokkal."
+    />
+    <title>Makro_kerdesbank</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="quiz-panel" aria-labelledby="app-title">
+        <div class="topbar">
+          <div class="progress-cluster" aria-live="polite">
+            <span class="progress-label" id="question-progress">Kérdés 1 / 250</span>
+            <span class="answered-label" id="answered-progress">0 megválaszolva</span>
+          </div>
+          <div class="top-actions">
+            <button class="finish-button" id="finish-button" type="button">Befejezés</button>
+            <button class="ghost-button" id="restart-button" type="button">Újrakeverés</button>
+          </div>
+        </div>
+
+        <div class="meter" aria-hidden="true">
+          <span id="progress-bar"></span>
+        </div>
+
+        <header class="title-block">
+          <div class="visual-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <p class="eyebrow" id="topic-label">Makroökonómia</p>
+            <h1 id="app-title">Makro_kerdesbank</h1>
+          </div>
+        </header>
+
+        <section class="question-view" id="question-view">
+          <h2 id="question-text"></h2>
+          <div class="options-grid" id="options-grid" role="radiogroup" aria-labelledby="question-text"></div>
+          <div class="feedback" id="feedback" hidden></div>
+        </section>
+
+        <section class="summary-view" id="summary-view" hidden>
+          <p class="eyebrow">Teszt lezárva</p>
+          <h2 id="summary-title"></h2>
+          <p class="summary-copy" id="summary-copy"></p>
+          <div class="wrong-list-wrap">
+            <h3 id="wrong-list-title">Hibásan megválaszolt kérdések sorszáma</h3>
+            <p id="wrong-list"></p>
+          </div>
+        </section>
+
+        <footer class="navigation">
+          <button class="secondary-button" id="prev-button" type="button">Előző</button>
+          <button class="primary-button" id="next-button" type="button">Következő</button>
+        </footer>
+      </section>
+
+      <dialog class="confirm-dialog" id="finish-dialog" aria-labelledby="finish-dialog-title">
+        <form method="dialog">
+          <h2 id="finish-dialog-title">Lezárod a tesztet?</h2>
+          <p>
+            A lezárás után rögtön megjelenik az eredmény, és a hibás vagy még meg nem válaszolt
+            kérdések eredeti kérdésbank-sorszáma.
+          </p>
+          <div class="dialog-actions">
+            <button class="secondary-button" id="cancel-finish-button" value="cancel" type="submit">Mégse</button>
+            <button class="primary-button" id="confirm-finish-button" value="confirm" type="button">Tovább</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+
+    <script src="data/questions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
