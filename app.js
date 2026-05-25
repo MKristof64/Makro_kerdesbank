@@ -159,11 +159,11 @@ function renderNavigation(hasAnswer) {
 }
 
 function renderSummary() {
-  const wrongNumbers = questions
-    .filter((question) => state.answers[question.number] !== question.correct)
+  const wrongAnsweredNumbers = questions
+    .filter((question) => state.answers[question.number] && state.answers[question.number] !== question.correct)
     .map((question) => question.number)
     .sort((a, b) => a - b);
-  const correct = questions.length - wrongNumbers.length;
+  const correct = questions.filter((question) => state.answers[question.number] === question.correct).length;
   const percent = Math.round((correct / questions.length) * 100);
   const answered = answeredCount();
   const hasUnanswered = answered < questions.length;
@@ -176,12 +176,10 @@ function renderSummary() {
   els.topicLabel.textContent = "Makroökonómia";
   els.summaryTitle.textContent = `${correct} / ${questions.length} helyes válasz`;
   els.summaryCopy.textContent = hasUnanswered
-    ? `Az eredményed ${percent}%. A tesztet ${answered} megválaszolt kérdés után zártad le; a lista az eredeti kérdésbank szerinti hibás vagy meg nem válaszolt sorszámokat mutatja.`
+    ? `Az eredményed ${percent}%. A tesztet ${answered} megválaszolt kérdés után zártad le; a lista kizárólag az eredeti kérdésbank szerinti hibásan megválaszolt sorszámokat mutatja.`
     : `Az eredményed ${percent}%. Az alábbi lista az eredeti kérdésbank szerinti hibásan megválaszolt sorszámokat mutatja.`;
-  els.wrongListTitle.textContent = hasUnanswered
-    ? "Hibás vagy meg nem válaszolt kérdések sorszáma"
-    : "Hibásan megválaszolt kérdések sorszáma";
-  els.wrongList.textContent = wrongNumbers.length ? wrongNumbers.join(", ") : "Nincs hibás válasz.";
+  els.wrongListTitle.textContent = "Hibásan megválaszolt kérdések sorszáma";
+  els.wrongList.textContent = wrongAnsweredNumbers.length ? wrongAnsweredNumbers.join(", ") : "Nincs hibás válasz.";
   els.finishButton.hidden = true;
 
   els.prevButton.hidden = true;
