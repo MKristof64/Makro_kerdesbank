@@ -2,6 +2,8 @@
 
 Randomizált makroökonómia kérdésbank 250 feleletválasztós kérdéssel, azonnali visszajelzéssel és részletes indoklással.
 
+Publikus oldal: https://mkristof64.github.io/Makro_kerdesbank/
+
 ## Tartalom
 
 - A kérdések minden új tesztnél véletlen sorrendben jelennek meg.
